@@ -1,6 +1,4 @@
-output = """Total amount needed to fund loans expiring within 24 hours: 21425.00 
-
-These loans need your help! : 
+output = """hese loans need your help! : 
 
 https://www.kiva.org/lend/1348148 amount left to raise: 25.00
 https://www.kiva.org/lend/1344407 amount left to raise: 2650.00
@@ -10,19 +8,30 @@ https://www.kiva.org/lend/1344222 amount left to raise: 450.00
 https://www.kiva.org/lend/1344805 amount left to raise: 650.00
 https://www.kiva.org/lend/1344422 amount left to raise: 475.00
 https://www.kiva.org/lend/1348130 amount left to raise: 800.00
+https://www.kiva.org/lend/1348649 amount left to raise: 525.00
 https://www.kiva.org/lend/1344819 amount left to raise: 775.00
 https://www.kiva.org/lend/1348121 amount left to raise: 1000.00
 https://www.kiva.org/lend/1346461 amount left to raise: 3050.00
+https://www.kiva.org/lend/1348596 amount left to raise: 2275.00
 https://www.kiva.org/lend/1344296 amount left to raise: 2325.00
 https://www.kiva.org/lend/1344801 amount left to raise: 650.00
 https://www.kiva.org/lend/1344804 amount left to raise: 575.00
 https://www.kiva.org/lend/1348027 amount left to raise: 350.00
 https://www.kiva.org/lend/1344417 amount left to raise: 1075.00
 https://www.kiva.org/lend/1344830 amount left to raise: 900.00
+https://www.kiva.org/lend/1344930 amount left to raise: 1275.00
+https://www.kiva.org/lend/1344931 amount left to raise: 950.00
+https://www.kiva.org/lend/1344933 amount left to raise: 1250.00
+https://www.kiva.org/lend/1344935 amount left to raise: 875.00
+https://www.kiva.org/lend/1344937 amount left to raise: 1250.00
 https://www.kiva.org/lend/1348041 amount left to raise: 425.00
 https://www.kiva.org/lend/1348100 amount left to raise: 1000.00
 https://www.kiva.org/lend/1348106 amount left to raise: 750.00
-https://www.kiva.org/lend/1348114 amount left to raise: 700.00"""
+https://www.kiva.org/lend/1348114 amount left to raise: 700.00
+https://www.kiva.org/lend/1348120 amount left to raise: 850.00
+https://www.kiva.org/lend/1348126 amount left to raise: 1675.00
+https://www.kiva.org/lend/1348170 amount left to raise: 1600.00
+"""
 
 raw_json_response = [
    {

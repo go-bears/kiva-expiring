@@ -19,7 +19,7 @@ import pytz
 
 from datetime import timedelta, datetime
 from dateutil import parser
-
+from functools import lru_cache
 
 GRAPHQL_ENDPOINT = 'https://api.kivaws.org/graphql?query='
 LEND_TAB_URL_BASE = 'https://www.kiva.org/lend/'
@@ -52,6 +52,7 @@ query_loans_expiring_24hrs = """
 }
 """
 
+# TODO: refactor--separate the api query from the transformation, break into 2 functions
 
 def call_kivaapi(query):
     """takes in graphql style query as a string
@@ -87,8 +88,10 @@ def preprocess_json(json_response_list):
         loan['link'] = LEND_TAB_URL_BASE + str(loan['id'])
         loan['amtLeftToFundraise'] = loan['loanAmount'] - \
             loan['loanFundraisingInfo']['fundedAmount']
-        loan['plannedExpirationDate'] = parser.parse(
-            loan['plannedExpirationDate'])
+
+        if isinstance(loan['plannedExpirationDate'], str):
+            loan['plannedExpirationDate'] = parser.parse(
+                loan['plannedExpirationDate'])
 
     return json_response_list
 
@@ -140,7 +143,6 @@ def calculate_total_fundraising_needed(subset_24_hrs_list):
 
 def show_total_fundraising_needed(total_sum):
     msg = "Total amount needed to fund loans expiring within 24 hours: {0:.2f} \n".format(total_sum)
-    # print (msg)
     
     return msg
 
@@ -172,7 +174,7 @@ def show_expiring_loans(subset_24_hrs_list):
 def main():
     """runs all functions for execution and testing
     """
- 
+    # print(call_kivaapi.cache_info())
     loans = call_kivaapi(query_loans_expiring_24hrs)
     print(len(loans))
     test_loans = loans
@@ -182,7 +184,8 @@ def main():
     test2 = filter_loans_24_hrs(test1)
     # print(len(test2))
     total = calculate_total_fundraising_needed(test2)
-    show_total_fundraising_needed(total)
+    msg = show_total_fundraising_needed(total)
+    print (msg)
     show_expiring_loans(test2)
 
 if __name__ == '__main__':
