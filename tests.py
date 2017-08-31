@@ -15,7 +15,7 @@ now = parser.parse("2017-08-30 02:05:38.734405+00:00")
 # can be double checked
 post_process = preprocess_json(raw_json_response)
 test_post_process = post_process[0]
-filtered_24 = filter_loans_24_hrs(post_process)
+filtered_24 = filter_loans_24_hrs(post_process, now)
 test_total = calculate_total_fundraising_needed(filtered_24)
 
 
@@ -45,18 +45,18 @@ class KivaExpiringTest(unittest.TestCase):
         self.assertTrue(type(test_post_process['amtLeftToFundraise']), float)
 
     def test_filter_loans_24_hrs_subset(self):
-        self.assertTrue(len(filter_loans_24_hrs(post_process))
+        self.assertTrue(len(filter_loans_24_hrs(post_process, now))
                         < len(post_process))
 
     def test_filter_loans_24_hrs_type(self):
-        self.assertTrue(type(filter_loans_24_hrs(post_process)), list)
+        self.assertTrue(type(filter_loans_24_hrs(post_process, now)), list)
 
     def test_datetime_diff(self):
-        self.assertLessEqual((filter_loans_24_hrs(post_process)[0][
+        self.assertLessEqual((filter_loans_24_hrs(post_process, now)[0][
                              'plannedExpirationDate'] - now), timedelta(hours=24))
 
     def test_calculate_totalFundraisingNeeded(self):
-        self.assertEqual(calculate_total_fundraising_needed(filtered_24), 32250.0)
+        self.assertEqual(calculate_total_fundraising_needed(filtered_24), 21425.0)
 
     def test_show_total_fundraising_needed(self):
         self.assertEqual(type(show_total_fundraising_needed(test_total)), str)

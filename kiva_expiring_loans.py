@@ -96,7 +96,7 @@ def preprocess_json(json_response_list):
     return json_response_list
 
 
-def filter_loans_24_hrs(processed_json_list):
+def filter_loans_24_hrs(processed_json_list, now_time):
     """takes in list of cleaned data and returns subset list
     of loans that expire within 24 hours of current date/time
     """
@@ -111,7 +111,7 @@ def filter_loans_24_hrs(processed_json_list):
     for loan in processed_json_list:
         planned_expiration = loan['plannedExpirationDate']
 
-        if planned_expiration - NOW <= delta:
+        if planned_expiration - now_time <= delta:
             sorted_loans.append(loan)
         else:
             continue
@@ -181,7 +181,7 @@ def main():
     # print(len(test_loans))
     test1 = preprocess_json(test_loans)
     # print (len(test1))
-    test2 = filter_loans_24_hrs(test1)
+    test2 = filter_loans_24_hrs(test1, NOW)
     # print(len(test2))
     total = calculate_total_fundraising_needed(test2)
     msg = show_total_fundraising_needed(total)
