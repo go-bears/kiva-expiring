@@ -19,7 +19,7 @@ import pytz
 
 from datetime import timedelta, datetime
 from dateutil import parser
-from functools import lru_cache
+# from functools import lru_cache
 
 GRAPHQL_ENDPOINT = 'https://api.kivaws.org/graphql?query='
 LEND_TAB_URL_BASE = 'https://www.kiva.org/lend/'
